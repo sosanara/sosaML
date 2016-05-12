@@ -1,5 +1,5 @@
-import SVM
-import GetBinaryImage
+from ML import SVM
+from ML import GetBinaryImage
 
 input_image = 'img/2.png/'
 reference_image = 'ref.png'
