@@ -31,7 +31,7 @@ print SVM.BSVM.get_bald_SVM(input_image, reference_image, learnData)
 <br></br>
 
 ##Result :
-```json
+```javascript
 {'result': {'TYPE': 0~4, 'PERCENT': 0.0~100.0}}
 ```
 
