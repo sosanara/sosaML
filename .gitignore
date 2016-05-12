@@ -161,4 +161,5 @@ fabric.properties
 data/
 img/
 save/
+sosaML.egg-info/
 ref.png

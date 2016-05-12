@@ -9,7 +9,7 @@ $ git clone https://github.com/sosanara/sosaML.git
 ## How to use :
 #### if you not have **PIL**, **cv2**, **numpy**, **sklearn** library, you can first
 ```sh
-$ pip install PIL
+$ pip install pillow
 $ pip install numpy
 $ pip install scipy
 $ pip install sklearn
