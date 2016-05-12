@@ -4,7 +4,7 @@ setup_requires = [
     ]
 
 install_requires = [
-    'pillow==3.1.1',
+    'pillow==3.2.0',
     'numpy==1.11.0',
     'scipy==0.17.0',
     'sklearn==0.0',
