@@ -1,10 +1,11 @@
-import os
-
 from ML import SVM
-from ML import GetBinaryImage as gbi
+from ML import GetBinaryImage
 
-input_image = 'img/your_image.png'
+input_image = 'img/2.png/'
+reference_image = 'ref.png'
+learnData = 'data/learnData/'
 
-gbi.BImage.get_binary_image(input_image, 'your/image/save/path', 'imageName')
+binary_image = GetBinaryImage.BImage(input_image)
+binary_image.save_binary_to_image('save')
 
-print SVM.BSVM.get_bald_SVM(input_image)
+print SVM.BSVM.get_bald_SVM(input_image, reference_image, learnData)
