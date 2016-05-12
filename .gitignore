@@ -158,7 +158,7 @@ fabric.properties
 ### Custom
 .idea
 *.pyc
-data/*
-Type/*
-learnData
-img/*
+data/
+img/
+save/
+ref.png

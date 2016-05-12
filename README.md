@@ -1,81 +1,103 @@
-#sosaML
-<br></br>
-##Installation
+# sosaML
+---
+
+## Installation
 ```sh
 $ git clone https://github.com/sosanara/sosaML.git
 ```
 
-##How to use :
-#####if you not have **PIL**, **cv2**, **numpy**, **sklearn** library, you can first
+## How to use :
+#### if you not have **PIL**, **cv2**, **numpy**, **sklearn** library, you can first
 ```sh
 $ pip install PIL
 $ pip install numpy
-$ brew install opencv
+$ pip install scipy
 $ pip install sklearn
 ```
-#####Example :
-```sh
->>> from ML import SVM
->>> input_image = 'your/image/path.png'
->>> SVM.BSVM.get_bald_SVM(input_image) 
->>> gbi.BImage.get_binary_image(input_image, 'your/image/save/path', 'imageName')
+#### Example :
+```python
+from ML import SVM
+from ML import GetBinaryImage
+
+input_image = 'img/2.png/'
+reference_image = 'ref.png'
+learnData = 'data/learnData/'
+
+binary_image = GetBinaryImage.BImage(input_image)
+binary_image.save_binary_to_image('save')
+
+print SVM.BSVM.get_bald_SVM(input_image, reference_image, learnData)
 ```
 <br></br>
 
 ##Result :
+```javascript
 {'result': {'TYPE': 0~4, 'PERCENT': 0.0~100.0}}
-<br></br>
+```
 
-##File description :
-####1) GetPercent.py
+## File description (Class units):
 
-#####def get_image_pixel_similarity(input_image)
+#### 1) Preprocessing.py
 
-input_image : 사용자가 보낸 머리 이미지(540*960)
+```python
+@staticmethod
+def append_slash(path)
+```
+path : path 끝에 '/'가 있는 지 확인 후 추가
 
-return : 전체 원 안의 살색의 비율
+return : 경로
 
-<br></br>
-####2) SetPreprocessing.py
+```python
+@staticmethod
+def remove_slash(path)
+```
+path : path 끝에 '/'가 있는 지 확인 후 제거
 
-#####def set_preprocessing(input_image)
+return : 경로
 
-input_image : 사용자가 보낸 머리 이미지(540*960)
+```python
+@staticmethod
+def detect_skin_color(input_image)
+```
+input_image : 사용자 머리 이미지 경로
 
-return : 살색은 흰색, 나머지는 검은색으로 이진화 된 이미지.
+return : 머리 이미지의 binary 이미지 값
 
-<br></br>
-####3) TransImage.py
+```python
+def image_to_array(self)
+```
+return : binary 이미지 값을 배열로 전환한 값
 
-#####def image_to_array(input_image)
+```python
+def get_image_pixel_similarity(self)
+```
+return : Reference 이미지와 input 이미지의 차이 % (얼마나 다른지)
 
-input_image : 사용자가 보낸 머리 이미지(540*960)
+#### 2) GetBinaryImage.py
 
-return : 이미지 이진화 시켜 배열로 저장한 배열값
+```python
+def _image_name(self, input_image))
+````
+input_image : 사용자 머리 이미지 경로
 
-<br></br>
-####4) SVM.py
+return : 이미지 파일 이름
 
-#####def get_bald_SVM(input_image)
+```python
+def save_binary_to_image(self, path)
+```
+input_image : 사용자 머리 이미지 경로
 
-input_image : 사용자가 보낸 머리 이미지(540*960)  
-  
-return : SVM을 이용한 결과타입 및 퍼센트 값
-  
-<br></br>
-####5) GetBinaryImage.py
+머리 이미지의 살색 검출 후, binary로 바꾼 값을 이미지로 저장
 
-def get_binary_image(input_image, path, fname='skin_color')
+####3) SVM.py
 
-input_image : 사용자가 보낸 머리 이미지(540*960) 
+```python
+@staticmethod
+def get_bald_SVM(input_image, reference_image, learn_data)
+```
 
-path : 이진화된 이미지를 저장하고 싶은 위치 
+input_image : 사용자 머리 이미지 경로
 
-fname='skin_color' : 저장할 이미지의 이름(default = 'skin_color.png')
+reference_image : 비교할 머리 기준 이미지
 
-실행결과 : skin color를 추출한 이진화이미지가 path경로에 저장된다.
-
-<br></br>
-####6) MakeData.py
-
-데이터가 있는 csv파일을 서버에서 사용할 수 있도록 미리 학습시켜놓은 후 저장한다.
+learn_data : 학습시켜 놓은 파일

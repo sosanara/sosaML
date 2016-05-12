@@ -1,19 +1,15 @@
 import cPickle
-from ML import TransImage as ti
-from ML import GetPercent as gp
+from Preprocessing import Preprocessing
 
 
 class BSVM:
-    def __init__(self):
-        pass
-
     @staticmethod
-    def get_bald_SVM(input_image):
-        percent = gp.get_image_pixel_similarity(input_image)
+    def get_bald_SVM(input_image, reference_image, learn_data):
+        pre = Preprocessing(input_image, reference_image)
+        percent = pre.pixel_similarity()
+        imgArr = pre.image_to_array()
 
-        imgArr = ti.image_to_array(input_image)
-
-        with open('learnData', 'rb') as f:
+        with open(Preprocessing.remove_slash(learn_data), 'rb') as f:
             clf = cPickle.load(f)
 
         type = int(clf.predict(imgArr))
