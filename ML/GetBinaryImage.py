@@ -29,4 +29,5 @@ class BImage:
         return {
             'filename': 'binary_' + self.image_name,
             'path': path,
+            'fullname': img_name
         }
