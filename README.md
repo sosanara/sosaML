@@ -32,7 +32,7 @@ print SVM.BSVM.get_bald_SVM(input_image, reference_image, learnData)
 
 ##Result :
 ```javascript
-{'result': {'TYPE': 0~4, 'PERCENT': 0.0~100.0}}
+{'result': {'type': 0~4, 'percent': 0.0~100.0}}
 ```
 
 ## File description (Class units):

@@ -18,7 +18,7 @@ class BSVM:
 
         return {
             'result': {
-                'PERCENT': percent,
-                'TYPE': type
+                'percent': percent,
+                'type': type
             }
         }
