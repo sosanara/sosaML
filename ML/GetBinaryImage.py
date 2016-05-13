@@ -26,3 +26,7 @@ class BImage:
         path = Preprocessing.append_slash(path)
         img_name = path + 'binary_' + self.image_name + '.png'
         cv2.imwrite(img_name, self.binary_image)
+        return {
+            'filename': 'binary_' + self.image_name,
+            'path': path,
+        }
