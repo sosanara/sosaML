@@ -83,15 +83,15 @@ input_image : 사용자 머리 이미지 경로
 return : 이미지 파일 이름
 
 ```python
-def _image_background(self, img_name, brg_choice, brg_compare, brg_value)
+def _image_background(self, img_name, bgr_choice, bgr_compare, bgr_value)
 ```
 img_name : 이진화된 이미지
 
-brg_choice : brg 중 컬러 선택
+bgr_choice : bgr 중 컬러 선택
 
-brg_compare : brg_choice에서 고른 색에서 비교할 값
+bgr_compare : bgr_choice에서 고른 색에서 비교할 값
 
-brg_value : 조건을 만족하면 넣을 value (tuple rgb 값)
+bgr_value : 조건을 만족하면 넣을 value (tuple rgb 값)
 
 이미지의 테두리의 색을 바꿔서 저장
 
