@@ -25,20 +25,24 @@ class BImage:
         elif temp.find('.bmp') != -1: return temp.split('.bmp')[0]
         elif temp.find('.BMP') != -1: return temp.split('.BMP')[0]
 
-    def _image_background(self, img_name, bgr_choice, bgr_compare, bgr_value):
+    def _image_background(self, img_name, bgr_choice, bgr_compare_up, bgr_compare_down, bgr_value):
         change_convert_image = Image.open(img_name).convert('RGB')
         img = cv2.imread(self.input_image)
+        bgr = [0, 1, 2]
+        bgr.remove(bgr_choice)
         for i in range(img.shape[0]):
             for j in range(img.shape[1]):
-                if img[i][j][bgr_choice] > bgr_compare:
+                if img[i][j][bgr_choice] > bgr_compare_up and \
+                   img[i][j][bgr[0]] < bgr_compare_down and \
+                   img[i][j][bgr[1]] < bgr_compare_down:
                     change_convert_image.putpixel((j, i), bgr_value)
         change_convert_image.save(img_name, "PNG")
 
-    def save_binary_to_image(self, path, bgr_choice, bgr_compare, bgr_value):
+    def save_binary_to_image(self, path, bgr_choice, bgr_compare_up, bgr_compare_down, bgr_value):
         path = Preprocessing.append_slash(path)
         img_name = path + 'binary_' + self.image_name + '.png'
         cv2.imwrite(img_name, self.binary_image)
-        self._image_background(img_name, bgr_choice, bgr_compare, bgr_value)
+        self._image_background(img_name, bgr_choice, bgr_compare_up, bgr_compare_down, bgr_value)
 
         return {
             'filename': 'binary_' + self.image_name,
