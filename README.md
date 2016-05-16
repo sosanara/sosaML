@@ -83,13 +83,15 @@ input_image : 사용자 머리 이미지 경로
 return : 이미지 파일 이름
 
 ```python
-def _image_background(self, img_name, bgr_choice, bgr_compare, bgr_value)
+def _image_background(self, img_name, bgr_choice, bgr_compare_up, bgr_compare_down, bgr_value)
 ```
 img_name : 이진화된 이미지
 
 bgr_choice : bgr 중 컬러 선택
 
-bgr_compare : bgr_choice에서 고른 색에서 비교할 값
+bgr_compare_up : bgr_choice 에서 고른 색을 비교할 값
+
+bgr_compare_down : bgr_choice 에서 고른 색을 제외하고 비교할 값
 
 bgr_value : 조건을 만족하면 넣을 value (tuple rgb 값)
 
