@@ -83,7 +83,7 @@ input_image : 사용자 머리 이미지 경로
 return : 이미지 파일 이름
 
 ```python
-def _image_background(self, img_name, bgr_choice, bgr_compare_up, bgr_compare_down, bgr_value)
+def _image_background(self, img_name, bgr_choice, bgr_compare_up, bgr_compare_down)
 ```
 img_name : 이진화된 이미지
 
@@ -93,14 +93,18 @@ bgr_compare_up : bgr_choice 에서 고른 색을 비교할 값
 
 bgr_compare_down : bgr_choice 에서 고른 색을 제외하고 비교할 값
 
-bgr_value : 조건을 만족하면 넣을 value (tuple rgb 값)
-
 이미지의 테두리의 색을 바꿔서 저장
 
 ```python
-def save_binary_to_image(self, path)
+def save_binary_to_image(self, path, bgr_choice, bgr_compare_up, bgr_compare_down)
 ```
 input_image : 사용자 머리 이미지 경로
+
+bgr_choice : _image_background로 전달
+
+bgr_compare_up : _image_background로 전달
+
+bgr_compare_down : _image_background로 전달
 
 머리 이미지의 살색 검출 후, binary로 바꾼 값을 이미지로 저장
 

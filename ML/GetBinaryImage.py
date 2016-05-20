@@ -25,9 +25,15 @@ class BImage:
         elif temp.find('.bmp') != -1: return temp.split('.bmp')[0]
         elif temp.find('.BMP') != -1: return temp.split('.BMP')[0]
 
-    def _image_background(self, img_name, bgr_choice, bgr_compare_up, bgr_compare_down, bgr_value):
-        change_convert_image = Image.open(img_name).convert('RGB')
+    def _image_background(self, img_name, bgr_choice, bgr_compare_up, bgr_compare_down):
+        convert_origin_image = Image.open(self.input_image).convert('RGB')
+        convert_change_image = Image.open(img_name).convert('RGB')
+        origin = convert_origin_image.crop((77, 184, 464, 677))
+        change = convert_change_image.crop((77, 184, 464, 677))
+
+        origin.save(self.input_image, "PNG")
         img = cv2.imread(self.input_image)
+
         bgr = [0, 1, 2]
         bgr.remove(bgr_choice)
         for i in range(img.shape[0]):
@@ -35,14 +41,16 @@ class BImage:
                 if img[i][j][bgr_choice] > bgr_compare_up and \
                    img[i][j][bgr[0]] < bgr_compare_down and \
                    img[i][j][bgr[1]] < bgr_compare_down:
-                    change_convert_image.putpixel((j, i), bgr_value)
-        change_convert_image.save(img_name, "PNG")
+                    origin.putpixel((j, i), (255, 255, 255))
+                    change.putpixel((j, i), (255, 255, 255))
+        origin.save(self.input_image, "PNG")
+        change.save(img_name, "PNG")
 
-    def save_binary_to_image(self, path, bgr_choice, bgr_compare_up, bgr_compare_down, bgr_value):
+    def save_binary_to_image(self, path, bgr_choice, bgr_compare_up, bgr_compare_down):
         path = Preprocessing.append_slash(path)
         img_name = path + 'binary_' + self.image_name + '.png'
         cv2.imwrite(img_name, self.binary_image)
-        self._image_background(img_name, bgr_choice, bgr_compare_up, bgr_compare_down, bgr_value)
+        self._image_background(img_name, bgr_choice, bgr_compare_up, bgr_compare_down)
 
         return {
             'filename': 'binary_' + self.image_name,
