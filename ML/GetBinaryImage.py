@@ -28,8 +28,8 @@ class BImage:
     def _image_background(self, img_name, bgr_choice, bgr_compare_up, bgr_compare_down):
         convert_origin_image = Image.open(self.input_image).convert('RGB')
         convert_change_image = Image.open(img_name).convert('RGB')
-        origin = convert_origin_image.crop((77, 184, 464, 677))
-        change = convert_change_image.crop((77, 184, 464, 677))
+        origin = convert_origin_image.crop((77, 200, 464, 695))
+        change = convert_change_image.crop((77, 200, 464, 695))
 
         origin.save(self.input_image, "PNG")
         img = cv2.imread(self.input_image)
